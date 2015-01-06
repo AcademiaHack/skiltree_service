@@ -41,6 +41,7 @@ class Welcome extends CI_Controller {
 		} else {
 			$response->error = "FALTA PARAMETRO USER CON EL NICK DEL USUARIO";
 		} 
+		header('Content-Type: application/json');
         echo json_encode($response);
 	}
 }
