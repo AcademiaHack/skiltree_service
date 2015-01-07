@@ -2,6 +2,17 @@
 
 class Skilltree extends CI_Controller {
 
+	public function index() {
+		$this->load->view('student_profile');
+	}
+
+	public function error($error_string) {
+		$data = array(
+			'error_string' => $error_string
+		);
+		$this->load->view('error', $data);
+	}
+
 	public function get() {
 		$this->load->model('User');
 
@@ -18,15 +29,19 @@ class Skilltree extends CI_Controller {
 
         		$bd_attendance = $this->User->get_attendance($display_name);
         		if(isset($bd_attendance) && isset($bd_attendance[0])) {
-        			$response->user_attendance = $bd_attendance[0]->meta_value;
+        			$response->attendance_code = $bd_attendance[0]->meta_value;
+        			$response->attendance = $this->convert_attendance($response->attendance_code);
         		} else {
-        			$response->error = "USUARIO SIN CAMPO ASISTENCIA";	
+        			$response->error = "USUARIO SIN CAMPO ASISTENCIA";
+        			$response->error_url = base_url() . "index.php/skilltree/error/".$response->error;	
         		}
         	} else {
         		$response->error = "USUARIO INCORRECTO";
+        		$response->error_url = base_url() . "index.php/skilltree/error/".$response->error;
         	}
 		} else {
 			$response->error = "FALTA PARAMETRO USER CON EL NICK DEL USUARIO";
+			$response->error_url = base_url() . "index.php/skilltree/error/".$response->error;
 		} 
 
 		$data = array(
@@ -34,5 +49,19 @@ class Skilltree extends CI_Controller {
 		);
 
 		$this->load->view('json_view', $data);
+	}
+
+	private function convert_attendance($code_attendance) {
+		$attendance_string = "";
+
+		$split = explode("*", $code_attendance);
+		$attendance_actual = $split[0];
+
+		$attendances = substr_count($attendance_actual, '1');
+		$absence = substr_count($attendance_actual, '0');
+
+		$attendance_string .= $attendances."/".strlen($attendance_actual);
+
+		return $attendance_string;
 	}
 }
