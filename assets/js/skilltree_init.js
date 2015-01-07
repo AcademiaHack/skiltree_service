@@ -50,7 +50,7 @@
 
         $.ajax({
             data: parametros,
-            url: 'http://localhost:8080/skilltree_service/index.php?/skilltree/get?',
+            url: '/skilltree/get?',
             type: 'get',
             success:  function (response) {
                 console.log(response);

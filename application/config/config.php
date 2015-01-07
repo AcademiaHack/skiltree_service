@@ -14,7 +14,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost:8080/skilltree_service/';
+$config['base_url']	= 'http://localhost:8080/';
+//$config['base_url']	= 'http://sponsors.hack4geeks.co/';
 
 /*
 |--------------------------------------------------------------------------
