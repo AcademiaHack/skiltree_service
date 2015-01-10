@@ -33,15 +33,15 @@ class Skilltree extends CI_Controller {
         			$response->attendance = $this->convert_attendance($response->attendance_code);
         		} else {
         			$response->error = "USUARIO SIN CAMPO ASISTENCIA";
-        			$response->error_url = base_url() . "index.php/skilltree/error/".$response->error;	
+        			$response->error_url = base_url() . "skilltree/error/".$response->error;	
         		}
         	} else {
         		$response->error = "USUARIO INCORRECTO";
-        		$response->error_url = base_url() . "index.php/skilltree/error/".$response->error;
+        		$response->error_url = base_url() . "skilltree/error/".$response->error;
         	}
 		} else {
 			$response->error = "FALTA PARAMETRO USER CON EL NICK DEL USUARIO";
-			$response->error_url = base_url() . "index.php/skilltree/error/".$response->error;
+			$response->error_url = base_url() . "skilltree/error/".$response->error;
 		} 
 
 		$data = array(
