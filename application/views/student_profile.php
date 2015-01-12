@@ -79,6 +79,9 @@
 		<div>
 			Asistencia: <span id="attendance_number">.</span>
 		</div>
+		<div>
+			Tareas Entregadas: <span id="homeworks_number">.</span>
+		</div>
 		
 		
 		<script type="text/javascript" src="<?=base_url();?>assets/vendor/knockout.min.js"></script>

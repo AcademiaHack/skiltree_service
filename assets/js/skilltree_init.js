@@ -60,6 +60,7 @@
                     $(".talent-tree").attr("id", skilltree);
                     $("#username").html(response.display_name);
                     $("#attendance_number").html(response.attendance);
+                    $("#homeworks_number").html(response.homeworks);
                     //Init skilltree with database values
                     vm.useHash(skilltree);
                     

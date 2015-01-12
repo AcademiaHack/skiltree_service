@@ -31,8 +31,17 @@ class Skilltree extends CI_Controller {
         		if(isset($bd_attendance) && isset($bd_attendance[0])) {
         			$response->attendance_code = $bd_attendance[0]->meta_value;
         			$response->attendance = $this->convert_attendance($response->attendance_code);
+
+        			$bd_homeworks = $this->User->get_homeworks($display_name);
+        			if(isset($bd_homeworks) && isset($bd_homeworks[0])) {
+        				$response->homeworks_code = $bd_homeworks[0]->meta_value;
+        				$response->homeworks = $this->convert_attendance($response->homeworks_code);
+        			} else {
+        				$response->error = "USUARIO SIN CAMPO TAREAS";
+        				$response->error_url = base_url() . "skilltree/error/".$response->error;	
+        			}
         		} else {
-        			$response->error = "USUARIO SIN CAMPO ASISTENCIA";
+        			$response->error = "USUARIO SIN CAMPO ASISTENCIAS";
         			$response->error_url = base_url() . "skilltree/error/".$response->error;	
         		}
         	} else {
